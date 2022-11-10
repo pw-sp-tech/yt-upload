@@ -1,0 +1,12 @@
+{
+    "CLIENT_ID": "902933278414-t0hd5838fovap86kh9k4o18vunv6arjk.apps.googleusercontent.com",
+    "CLIENT_SECRET": "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",
+    "REDIRECT_URL": "http://localhost:3000",
+    "scope": [
+        "https://www.googleapis.com/auth/youtube",
+        "https://www.googleapis.com/auth/youtube.upload"
+    ],
+    "token_dir_path": "./",
+    "token_file": "token.txt",
+    "video_dir_path": "./videos/"
+}

@@ -2,6 +2,33 @@ var youtube = require('../library/googleyoutube');
 const https = require('https');
 var youtube = new youtube();
 
+function deleteYouTubeVideo(options) {
+    let id = options.id;
+    return new Promise((resolve, reject) => {
+        youtube.deleteVideo({
+                "id": id
+            },
+            function(err, res) {
+                console.log(res)
+                if (err) {
+                    resolve({
+                        err: 1,
+                        err_text: err,
+                        youtube_id: null
+                    });
+                } else {
+                    resolve({
+                        err: 0,
+                        err_text: null,
+                        message: "VIDEO_DELETED_SUCCESSFULLY"
+                    });
+
+                }
+            })
+
+    })
+}
+
 function uploadToYT(options) {
     let ocr = options.ocr;
     let fileURL = options.url;
@@ -55,4 +82,4 @@ function ocrCleanup(ocr) {
 }
 
 
-module.exports = uploadToYT;
+module.exports = { uploadToYT, deleteYouTubeVideo };

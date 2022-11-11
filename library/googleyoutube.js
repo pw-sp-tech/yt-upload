@@ -148,5 +148,25 @@ googleyoutube.prototype.uploadVideo = function(options, callback) {
         }
     });
 };
+googleyoutube.prototype.deleteVideo = function(options, callback) {
+    var tokens = this.fetchTokenFromFile();
+    var that = this;
 
+    this.refreshToken(tokens, function(err, tokens) {
+        if (!err) {
+            that.oauth2Client.setCredentials(tokens);
+            let id = options.id;
+            youtube.videos.delete({
+                auth: that.oauth2Client,
+                id
+            }, function(err, resp) {
+                if (err) {
+                    callback(err, null);
+                } else {
+                    callback(null, resp);
+                }
+            });
+        }
+    });
+};
 module.exports = googleyoutube;

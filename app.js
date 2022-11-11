@@ -5,7 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
-var upload = require('./scripts/upload')
+var upload = require('./scripts/upload');
+var deleteVideo = require('./scripts/delete');
 var app = express();
 const fetch = (...args) =>
     import ('node-fetch').then(({ default: fetch }) => fetch(...args));
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/welcome', routes);
 app.use('/upload', upload);
+app.use('/delete', deleteVideo);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

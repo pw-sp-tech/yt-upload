@@ -1,14 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const uploadToYT = require('./youtube').uploadToYT;
+const deleteYouTubeVideo = require('./youtube').deleteYouTubeVideo;
 
 
 router.post('/', (req, res) => {
     const body = req.body;
-    const ocr = body.ocr;
-    const url = body.url;
-    const isThumbnail = body.thumbnail;
-    uploadToYT({ ocr, url }).then(uploadRes => {
+    const id = body.id;
+    deleteYouTubeVideo({ id }).then(uploadRes => {
         res.send(uploadRes)
     })
 })

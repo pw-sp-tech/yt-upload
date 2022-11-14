@@ -35,7 +35,7 @@ function uploadToYT(options) {
     let { title, description } = ocrCleanup(ocr);
     return new Promise((resolve, reject) => {
         https.get(fileURL, (stream) => {
-            if (stream.headers['content-type'] != 'application/x-www-form-urlencoded') {
+            if (stream.headers['content-type'] != 'application/x-www-form-urlencoded' && stream.headers['content-type'] != 'application/binary') {
                 resolve({
                     err: 1,
                     err_text: 'INVALID_URL',
@@ -80,6 +80,5 @@ function ocrCleanup(ocr) {
     description = description + "\n" + `📲PW App Link - https://bit.ly/YTAI_PWAP \n🌐PW Website - https://www.pw.live`.toString();
     return { title, description };
 }
-
 
 module.exports = { uploadToYT, deleteYouTubeVideo };
